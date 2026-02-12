@@ -11,6 +11,7 @@ import {
   MailIcon,
   LocationIcon,
   GlobeIcon,
+  PhoneIcon,
   InstagramIcon,
   TikTokIcon,
   FacebookIcon,
@@ -95,32 +96,21 @@ export default function Kontakt() {
               </div>
 
               <div className="space-y-4">
-                <ContactInfoCard icon={<MailIcon size={20} />} title="Email" value="info@jennyrinn.cz" />
+                <ContactInfoCard icon={<MailIcon size={20} />} title="Email" value="jennyrinn1@icloud.com" />
                 <ContactInfoCard icon={<LocationIcon size={20} />} title="Lokace" value="Česká republika" />
-                <ContactInfoCard icon={<GlobeIcon size={20} />} title="Web" value="www.jennyrinn.cz" />
+                <ContactInfoCard icon={<PhoneIcon size={20} />} title="Telefon" value="+420 728 641 814" />
               </div>
 
               <div>
                 <h3 className="font-bold text-plum/70 mb-4">Sledujte mě na sítích</h3>
                 <div className="flex gap-3">
-                  <SocialBtn icon={<InstagramIcon size={18} />} label="Instagram" />
-                  <SocialBtn icon={<TikTokIcon size={18} />} label="TikTok" />
-                  <SocialBtn icon={<FacebookIcon size={18} />} label="Facebook" />
-                  <SocialBtn icon={<YoutubeIcon size={18} />} label="YouTube" />
+                  <SocialBtn icon={<InstagramIcon size={18} />} label="Instagram" href="https://www.instagram.com/jenny_rinn?igsh=bW11MmVhNW9qOWJj" />
+                  <SocialBtn icon={<TikTokIcon size={18} />} label="TikTok" href="https://www.tiktok.com/@jenny_rinn?_r=1&_t=ZN-93rpe2xKr82" />
+                  <SocialBtn icon={<FacebookIcon size={18} />} label="Facebook" href="https://www.facebook.com/share/1CruEFdxU3/?mibextid=wwXIfr" />
+                  <SocialBtn icon={<YoutubeIcon size={18} />} label="YouTube" href="https://youtube.com/@jennyrinn?si=bIA5WokuF1MkEsz8" />
                 </div>
               </div>
 
-              {/* Decorative photo */}
-              <div className="hidden lg:block relative mt-8">
-                <div className="oyster-frame w-40 h-44 mx-auto pearl-glow">
-                  <img
-                    src="https://placehold.co/300x350/FFEEF2/FF69B4?text=Jenny"
-                    alt="Jenny Rinn"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 pearl-shimmer" />
-                </div>
-              </div>
             </div>
 
             {/* Form */}
@@ -229,8 +219,7 @@ export default function Kontakt() {
                       />
                     </div>
 
-                    <button type="submit" className="pearl-btn w-full text-center text-lg py-4 mt-2 flex items-center justify-center gap-2">
-                      <ShellIcon size={18} className="text-white" />
+                    <button type="submit" className="pearl-btn w-full text-center text-lg py-4 mt-2">
                       Odeslat zprávu
                     </button>
                   </div>
@@ -270,9 +259,12 @@ function ContactInfoCard({ icon, title, value }: { icon: React.ReactNode; title:
   );
 }
 
-function SocialBtn({ icon, label }: { icon: React.ReactNode; label: string }) {
+function SocialBtn({ icon, label, href }: { icon: React.ReactNode; label: string; href: string }) {
   return (
-    <button
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label={label}
       className="w-12 h-12 rounded-full flex items-center justify-center
         bg-white border-2 border-shell-pink/15 text-hot-pink
@@ -280,6 +272,6 @@ function SocialBtn({ icon, label }: { icon: React.ReactNode; label: string }) {
         transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-hot-pink/15"
     >
       {icon}
-    </button>
+    </a>
   );
 }

@@ -11,6 +11,7 @@ import {
   MailIcon,
   LocationIcon,
   GlobeIcon,
+  PhoneIcon,
 } from "./Icons";
 
 export default function Footer() {
@@ -48,10 +49,10 @@ export default function Footer() {
               Propojuji svět lidí s tajemstvím oceánu
             </p>
             <div className="flex gap-3 mt-6">
-              <SocialButton icon={<InstagramIcon size={18} />} label="Instagram" />
-              <SocialButton icon={<TikTokIcon size={18} />} label="TikTok" />
-              <SocialButton icon={<FacebookIcon size={18} />} label="Facebook" />
-              <SocialButton icon={<YoutubeIcon size={18} />} label="YouTube" />
+              <SocialButton icon={<InstagramIcon size={18} />} label="Instagram" href="https://www.instagram.com/jenny_rinn?igsh=bW11MmVhNW9qOWJj" />
+              <SocialButton icon={<TikTokIcon size={18} />} label="TikTok" href="https://www.tiktok.com/@jenny_rinn?_r=1&_t=ZN-93rpe2xKr82" />
+              <SocialButton icon={<FacebookIcon size={18} />} label="Facebook" href="https://www.facebook.com/share/1CruEFdxU3/?mibextid=wwXIfr" />
+              <SocialButton icon={<YoutubeIcon size={18} />} label="YouTube" href="https://youtube.com/@jennyrinn?si=bIA5WokuF1MkEsz8" />
             </div>
           </div>
 
@@ -78,15 +79,15 @@ export default function Footer() {
             <ul className="space-y-3 text-plum/60 text-sm">
               <li className="flex items-center gap-3">
                 <MailIcon size={16} className="text-hot-pink" />
-                <span>info@jennyrinn.cz</span>
+                <span>jennyrinn1@icloud.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <LocationIcon size={16} className="text-hot-pink" />
                 <span>Česká republika</span>
               </li>
               <li className="flex items-center gap-3">
-                <GlobeIcon size={16} className="text-hot-pink" />
-                <span>www.jennyrinn.cz</span>
+                <PhoneIcon size={16} className="text-hot-pink" />
+                <span>+420 728 641 814</span>
               </li>
             </ul>
           </div>
@@ -110,15 +111,19 @@ export default function Footer() {
             Vytvořeno s láskou a trochou mořské magie
             <SparkleIcon size={12} className="text-hot-pink" />
           </p>
+          <p className="mt-1 italic">DESIGNED AND CREATED BY OLIVIA</p>
         </div>
       </div>
     </footer>
   );
 }
 
-function SocialButton({ icon, label }: { icon: React.ReactNode; label: string }) {
+function SocialButton({ icon, label, href }: { icon: React.ReactNode; label: string; href: string }) {
   return (
-    <button
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label={label}
       className="w-10 h-10 rounded-full flex items-center justify-center
         bg-white border-2 border-shell-pink/20 text-hot-pink
@@ -126,7 +131,7 @@ function SocialButton({ icon, label }: { icon: React.ReactNode; label: string })
         transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-hot-pink/20"
     >
       {icon}
-    </button>
+    </a>
   );
 }
 
