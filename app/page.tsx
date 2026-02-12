@@ -309,7 +309,7 @@ export default function Home() {
             <WhyCard
               icon={<WaveIcon size={28} />}
               title="Skutečné plavání"
-              description="Žádný trik – skutečné plavání pod vodou v profesionálním mořském kostýmu."
+              description="Žádný trik – pod vodou jsem jako doma a než vylezu, tak přestanete počítat sekundy."
             />
             <WhyCard
               icon={<HeartIcon size={28} />}
