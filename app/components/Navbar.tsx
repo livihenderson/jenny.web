@@ -62,13 +62,15 @@ export default function Navbar() {
           <MobileLink href="/" onClick={() => setIsOpen(false)}>Domů</MobileLink>
           <MobileLink href="/#sluzby" onClick={() => setIsOpen(false)}>Služby</MobileLink>
           <MobileLink href="/fotogalerie" onClick={() => setIsOpen(false)}>Fotogalerie</MobileLink>
-          <Link
-            href="/kontakt"
-            className="pearl-btn block text-center text-sm py-3"
-            onClick={() => setIsOpen(false)}
-          >
-            Kontaktovat
-          </Link>
+          <div className="flex justify-center">
+            <Link
+              href="/kontakt"
+              className="pearl-btn inline-block text-center text-sm py-3 px-10"
+              onClick={() => setIsOpen(false)}
+            >
+              Kontaktovat
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
