@@ -15,6 +15,7 @@ import {
   SwimIcon,
   HeartIcon,
   PhoneIcon,
+  StarIcon,
 } from "./components/Icons";
 
 export default function Home() {
@@ -73,11 +74,11 @@ export default function Home() {
 
           {/* Subtitle */}
           <div className="flex items-center justify-center gap-3 mb-4">
-            <MermaidTailIcon size={24} className="text-hot-pink" />
+            <StarIcon size={24} className="text-ocean-blue" />
             <p className="text-xl sm:text-2xl font-bold text-hot-pink tracking-wide">
               Mořská Panna & Influencer
             </p>
-            <MermaidTailIcon size={24} className="text-hot-pink" />
+            <StarIcon size={24} className="text-ocean-blue" />
           </div>
 
           {/* Tagline */}
@@ -253,7 +254,7 @@ export default function Home() {
               icon={<CakeIcon size={32} />}
               title="Dětské narozeniny"
               description="Splním sen každé malé princezny! Mořská panna přijde přímo na oslavu narozenin s hrami, příběhy a magií."
-              price="od 4 000 Kč"
+              price="700 Kč / hod"
             />
             <ServiceCard
               icon={<BuildingIcon size={32} />}
@@ -309,7 +310,7 @@ export default function Home() {
             <WhyCard
               icon={<WaveIcon size={28} />}
               title="Skutečné plavání"
-              description="Žádný trik – pod vodou jsem jako doma a než vylezu, tak přestanete počítat sekundy."
+              description="Žádný trik – pod vodou jsem jako doma a než vylezu, tak přestanete hlídat čas."
             />
             <WhyCard
               icon={<HeartIcon size={28} />}
