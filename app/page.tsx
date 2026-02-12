@@ -370,7 +370,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/fotogalerie" className="pearl-btn text-lg px-10 py-4 inline-flex items-center gap-2">
+            <Link href="/fotogalerie" className="pearl-btn !inline-flex items-center gap-1.5 text-lg !py-3 !px-10">
               <CameraIcon size={18} className="text-white" />
               Zobrazit celou galerii
             </Link>
