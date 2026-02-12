@@ -263,13 +263,13 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.7) 25%,
+    rgba(255, 255, 255, 0.4) 25%,
     transparent 50%,
-    rgba(255, 255, 255, 0.7) 75%,
+    rgba(255, 255, 255, 0.4) 75%,
     transparent 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
+  animation: shimmer 10s ease-in-out infinite;
 }
 
 .pearl-glow {
@@ -410,6 +410,7 @@ body {
   border: 2px solid rgba(255, 182, 193, 0.2);
   border-radius: 28px;
   padding: 2.2rem;
+  padding-bottom: 2.8rem;
   transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;

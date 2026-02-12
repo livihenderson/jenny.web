@@ -87,11 +87,12 @@ export default function Home() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/#sluzby" className="pearl-btn text-lg px-10 py-4 flex items-center gap-2">
+            <Link href="/#sluzby" className="pearl-btn !inline-flex items-center gap-2 text-lg !px-10 !py-3.5">
               <SparkleIcon size={18} className="text-white" />
               Objevte můj svět
             </Link>
-            <Link href="/kontakt" className="pearl-btn-outline text-lg px-10 py-4">
+            <Link href="/kontakt" className="pearl-btn-outline !inline-flex items-center gap-2 text-lg !px-10 !py-3">
+              <SparkleIcon size={18} className="text-hot-pink" />
               Kontaktujte mě
             </Link>
           </div>
@@ -161,7 +162,7 @@ export default function Home() {
                 <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-shell-pink/10 via-ocean-blue/5 to-lavender/10 blur-2xl" />
                 <div className="oyster-frame w-72 h-80 sm:w-80 sm:h-96 relative pearl-glow">
                   <img
-                    src="https://placehold.co/400x500/FFEEF2/FF69B4?text=Jenny+Rinn"
+                    src="/beutiful_ariel.png"
                     alt="Jenny Rinn - Mořská Panna"
                     className="w-full h-full object-cover"
                   />
@@ -235,36 +236,42 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             <ServiceCard
               icon={<MermaidTailIcon size={32} />}
               title="Mořská panna na akce"
               description="Přivedu pohádku na vaši akci! Ať už jde o narozeniny, festival nebo firemní event, jako živá mořská panna vytvořím nezapomenutelnou atmosféru plnou kouzla."
+              price="od 5 000 Kč"
             />
             <ServiceCard
               icon={<CameraIcon size={32} />}
               title="Focení s mořskou pannou"
               description="Profesionální focení v mém mořském kostýmu – v bazénu, u moře nebo ve studiu. Vytvořte si magické snímky, které vám vyrazí dech."
+              price="od 3 500 Kč"
             />
             <ServiceCard
               icon={<CakeIcon size={32} />}
               title="Dětské narozeniny"
               description="Splním sen každé malé princezny! Mořská panna přijde přímo na oslavu narozenin s hrami, příběhy a magií."
+              price="od 4 000 Kč"
             />
             <ServiceCard
               icon={<BuildingIcon size={32} />}
               title="Firemní & speciální akce"
               description="Udělejte dojem na hosty s unikátním vystoupením mořské panny. Perfektní pro galavečery, otevírání obchodů a tematické večírky."
+              price="od 8 000 Kč"
             />
             <ServiceCard
               icon={<HeartHandshakeIcon size={32} />}
               title="Influencer spolupráce"
               description="Spojme síly! Nabízím spolupráce pro značky, které chtějí oslovit široké publikum kreativním a magickým způsobem."
+              price="dle dohody"
             />
             <ServiceCard
               icon={<SwimIcon size={32} />}
               title="Plavání s mořskou pannou"
               description="Zažijte, jaké to je plavat jako skutečná mořská panna! Organizuji zážitkové plavání pro děti i dospělé."
+              price="od 2 500 Kč"
             />
           </div>
         </div>
@@ -346,19 +353,19 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="gallery-item aspect-square">
-              <img src="https://placehold.co/600x600/FFEEF2/FF69B4?text=Mermaid+Life" alt="Mořská panna" />
+              <img src="/fialova_plotev_bok.png" alt="Mořská panna" />
             </div>
             <div className="gallery-item aspect-[3/4] row-span-2">
-              <img src="https://placehold.co/450x600/D4ECFB/4A90D9?text=Underwater+Magic" alt="Pod vodou" />
+              <img src="/sedi_na_tanku.png" alt="Pod vodou" />
             </div>
             <div className="gallery-item aspect-square">
-              <img src="https://placehold.co/600x600/F0E6FF/9B59B6?text=Sparkle+%E2%9C%A8" alt="Kouzelný okamžik" />
+              <img src="/ouska.png" alt="Kouzelný okamžik" />
             </div>
             <div className="gallery-item aspect-square">
-              <img src="https://placehold.co/600x600/B8E4F9/4A90D9?text=Ocean+Dreams" alt="Na pláži" />
+              <img src="/bublinky.png" alt="Na pláži" />
             </div>
             <div className="gallery-item aspect-square">
-              <img src="https://placehold.co/600x600/FFE4EC/FF69B4?text=Pink+Dreams" alt="Party" />
+              <img src="/ploutev_ujezera_mobil.png" alt="Party" />
             </div>
           </div>
 
@@ -426,14 +433,19 @@ export default function Home() {
 
 /* Helper Components */
 
-function ServiceCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+function ServiceCard({ icon, title, description, price }: { icon: React.ReactNode; title: string; description: string; price: string }) {
   return (
-    <div className="service-card group">
-      <div className="icon-circle mb-5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-hot-pink/10 transition-all duration-300">
-        {icon}
+    <div className="relative pb-3.5">
+      <div className="service-card group h-full flex flex-col">
+        <div className="icon-circle mb-5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-hot-pink/10 transition-all duration-300">
+          {icon}
+        </div>
+        <h3 className="font-bold text-xl text-plum mb-3">{title}</h3>
+        <p className="text-plum/55 leading-relaxed text-sm">{description}</p>
       </div>
-      <h3 className="font-bold text-xl text-plum mb-3">{title}</h3>
-      <p className="text-plum/55 leading-relaxed text-sm">{description}</p>
+      <div className="absolute bottom-0 right-4 bg-gradient-to-r from-hot-pink to-barbie-pink text-white text-sm font-bold px-5 py-2 rounded-full shadow-lg shadow-hot-pink/25 z-10 whitespace-nowrap">
+        {price}
+      </div>
     </div>
   );
 }

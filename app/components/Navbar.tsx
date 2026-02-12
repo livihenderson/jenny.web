@@ -35,8 +35,8 @@ export default function Navbar() {
             <NavLink href="/">Domů</NavLink>
             <NavLink href="/#sluzby">Služby</NavLink>
             <NavLink href="/fotogalerie">Fotogalerie</NavLink>
-            <Link href="/kontakt" className="pearl-btn ml-4 text-sm py-2.5 px-6 flex items-center gap-2">
-              <SparkleIcon size={16} className="text-white" />
+            <Link href="/kontakt" className="pearl-btn !inline-flex items-center gap-1.5 ml-4 text-sm !py-2 !px-6">
+              <SparkleIcon size={14} className="text-white" />
               Kontaktovat
             </Link>
           </div>
