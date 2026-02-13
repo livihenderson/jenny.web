@@ -6,6 +6,7 @@ import BubbleEffect from "../components/BubbleEffect";
 import { CameraIcon, ShellIcon, StarfishIcon, SparkleIcon } from "../components/Icons";
 
 const galleryItems = [
+  { label: "Video", src: "/filmik.MOV", type: "video" as const },
   { label: "Mermaid Life", src: "/ze_shora_vlasy.png" },
   { label: "Underwater", src: "/tank_pod_vodou.png" },
   { label: "Purple Magic", src: "/party.png" },
@@ -24,6 +25,7 @@ const galleryItems = [
   { label: "Sunset Swim", src: "/v_rybnice.png" },
   { label: "Rose Pearl", src: "/jenny_underwater.JPG" },
   { label: "Tropical", src: "/beutiful_ariel.png" },
+  { label: "Na náměstí", src: "/na_namesti.png" },
   { label: "Sea Garden", src: "/cervena_ploutev_drzi se.png" },
   { label: "Bubble Bath", src: "/ariel_bok.png" },
 ];
@@ -104,15 +106,34 @@ export default function GalleryContent() {
             {galleryItems.map((item, i) => (
               <div
                 key={i}
-                className="gallery-item h-64 cursor-pointer"
+                className="gallery-item h-64 cursor-pointer relative"
                 onClick={() => setLightbox(i)}
               >
-                <img
-                  src={item.src}
-                  alt={item.label}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                {item.type === "video" ? (
+                  <>
+                    <video
+                      src={item.src}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-shell-pink/80 flex items-center justify-center shadow-lg">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -172,16 +193,27 @@ export default function GalleryContent() {
             </svg>
           </button>
 
-          {/* Image */}
+          {/* Image / Video */}
           <div
             className="max-w-[90vw] max-h-[85vh] relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={galleryItems[lightbox].src}
-              alt={galleryItems[lightbox].label}
-              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-            />
+            {galleryItems[lightbox].type === "video" ? (
+              <video
+                key={lightbox}
+                src={galleryItems[lightbox].src}
+                controls
+                autoPlay
+                playsInline
+                className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+              />
+            ) : (
+              <img
+                src={galleryItems[lightbox].src}
+                alt={galleryItems[lightbox].label}
+                className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+              />
+            )}
             {/* Counter */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/40 text-white/80 text-sm px-4 py-1.5 rounded-full">
               {lightbox + 1} / {galleryItems.length}
