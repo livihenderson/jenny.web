@@ -30,6 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/jenny_logo_spravny.png" />
+      </head>
       <body
         className={`${pacifico.variable} ${quicksand.variable} antialiased`}
       >

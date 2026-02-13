@@ -40,7 +40,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <ShellIcon size={28} className="text-hot-pink" />
+              <img src="/jenny_logo_spravny.png" alt="Logo" className="h-10 w-auto object-contain" />
               <span className="font-display text-3xl glitter-text">Jenny Rinn</span>
             </div>
             <p className="text-plum/50 text-sm leading-relaxed">

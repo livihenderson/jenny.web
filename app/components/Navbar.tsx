@@ -24,7 +24,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <ShellIcon size={28} className="text-hot-pink group-hover:rotate-12 transition-transform duration-300" />
+            <img src="/jenny_logo_spravny.png" alt="Logo" className="h-10 w-auto object-contain transition-transform duration-300 -mt-2" />
             <span className="font-display text-2xl glitter-text tracking-wide">
               Jenny Rinn
             </span>

@@ -141,8 +141,8 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="icon-circle mx-auto mb-4">
-              <MermaidTailIcon size={28} />
+            <div className="mx-auto mb-4">
+              <img src="/jenny_logo_spravny.png" alt="Logo" className="h-16 w-auto object-contain mx-auto" />
             </div>
             <h2 className="font-display text-4xl sm:text-5xl gradient-text section-title">
               O mně
