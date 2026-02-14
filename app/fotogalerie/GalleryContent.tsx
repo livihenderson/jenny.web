@@ -111,12 +111,9 @@ export default function GalleryContent() {
               >
                 {item.type === "video" ? (
                   <>
-                    <video
-                      src={item.src}
-                      muted
-                      playsInline
-                      poster="/filmik_thumb.jpg"
-                      preload="metadata"
+                    <img
+                      src="/filmik_thumb.jpg"
+                      alt={item.label}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
