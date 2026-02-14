@@ -29,9 +29,38 @@ export default function Kontakt() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+  
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          company: "", // honeypot (optional)
+        }),
+      });
+  
+      const data = await res.json().catch(() => ({}));
+  
+      if (!res.ok) {
+        alert(data.error || "Nepodařilo se odeslat zprávu.");
+        return;
+      }
+  
+      setSubmitted(true);
+  
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } catch (err) {
+      alert("Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.");
+    }
   };
 
   return (

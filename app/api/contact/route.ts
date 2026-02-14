@@ -19,19 +19,19 @@ function notificationHtml(params: {
   <div style="background:#fff7fb;padding:20px;font-family:Arial,sans-serif;color:#2b2b2b;">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #ffd1e5;border-radius:14px;overflow:hidden;">
       <div style="padding:16px 18px;background:linear-gradient(90deg,#ff5aa5,#ffc2dd);color:#fff;font-weight:700;">
-        Jenny Rinn — New contact
+        Jenny Rinn — Nová zpráva
       </div>
       <div style="padding:18px;">
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
-          <tr><td style="padding:6px 0;color:#7a5b67;width:120px;">Name</td><td style="padding:6px 0;font-weight:600;">${name}</td></tr>
-          <tr><td style="padding:6px 0;color:#7a5b67;">Email</td><td style="padding:6px 0;font-weight:600;">${email}</td></tr>
-          ${phone ? `<tr><td style="padding:6px 0;color:#7a5b67;">Phone</td><td style="padding:6px 0;font-weight:600;">${phone}</td></tr>` : ""}
-          ${service ? `<tr><td style="padding:6px 0;color:#7a5b67;">Service</td><td style="padding:6px 0;font-weight:600;">${service}</td></tr>` : ""}
+          <tr><td style="padding:6px 0;color:#7a5b67;width:120px;">Jméno</td><td style="padding:6px 0;font-weight:600;">${name}</td></tr>
+          <tr><td style="padding:6px 0;color:#7a5b67;">E-mail</td><td style="padding:6px 0;font-weight:600;">${email}</td></tr>
+          ${phone ? `<tr><td style="padding:6px 0;color:#7a5b67;">Telefon</td><td style="padding:6px 0;font-weight:600;">${phone}</td></tr>` : ""}
+          ${service ? `<tr><td style="padding:6px 0;color:#7a5b67;">Služba</td><td style="padding:6px 0;font-weight:600;">${service}</td></tr>` : ""}
         </table>
 
         <div style="margin-top:14px;padding:12px 14px;border:1px solid #ffd1e5;background:#fff7fb;border-radius:12px;">
           <div style="font-size:12px;letter-spacing:0.12em;color:#7a5b67;text-transform:uppercase;margin-bottom:8px;">
-            Message
+            Zpráva
           </div>
           <div style="white-space:pre-wrap;line-height:1.6;font-size:14px;">${message}</div>
         </div>
@@ -50,19 +50,19 @@ function autoReplyHtml(params: { name: string; message: string }) {
         Jenny Rinn
       </div>
       <div style="padding:18px;">
-        <p style="margin:0 0 10px 0;">Hi ${name},</p>
+        <p style="margin:0 0 10px 0;">Ahoj ${name},</p>
         <p style="margin:0 0 10px 0;line-height:1.6;">
-          thank you for your message! I received it and will get back to you as soon as possible.
+          děkuji za tvou zprávu! Přijala jsem ji a ozvu se ti co nejdříve.
         </p>
 
         <div style="margin-top:14px;padding:12px 14px;border:1px solid #ffd1e5;background:#fff7fb;border-radius:12px;">
           <div style="font-size:12px;letter-spacing:0.12em;color:#7a5b67;text-transform:uppercase;margin-bottom:8px;">
-            Copy of your message
+            Kopie tvé zprávy
           </div>
           <div style="white-space:pre-wrap;line-height:1.6;font-size:14px;">${message}</div>
         </div>
 
-        <p style="margin:14px 0 0 0;">Have a nice day,<br />Jenny</p>
+        <p style="margin:14px 0 0 0;">Měj se krásně,<br />Jenny</p>
       </div>
     </div>
   </div>`;
@@ -136,7 +136,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `Jenny Rinn <${gmailUser}>`,
       to: toJenny,
-      subject: `New contact: ${name}`,
+      subject: `Nová zpráva: ${name}`,
       replyTo: email,
       html: notificationHtml({
         name,
@@ -145,17 +145,17 @@ export async function POST(req: Request) {
         service: service || undefined,
         message,
       }),
-      text: `New contact\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${message}`,
+      text: `Nová zpráva z webu\nJméno: ${name}\nE-mail: ${email}\nTelefon: ${phone}\nSlužba: ${service}\n\nZpráva:\n${message}`,
     });
 
     // 2) Auto-reply to visitor
     await transporter.sendMail({
       from: `Jenny Rinn <${gmailUser}>`,
       to: email,
-      subject: "Thanks for your message — Jenny Rinn",
+      subject: "Děkuji za zprávu — Jenny Rinn",
       replyTo: toJenny,
       html: autoReplyHtml({ name, message }),
-      text: `Hi ${name},\n\nThanks for your message! I received it and will get back to you soon.\n\nCopy:\n${message}\n\nJenny`,
+      text: `Ahoj ${name},\n\nDěkuji za tvou zprávu! Přijala jsem ji a ozvu se ti co nejdříve.\n\nKopie tvé zprávy:\n${message}\n\nMěj se krásně,\nJenny`,
     });
 
     return NextResponse.json({ ok: true });
