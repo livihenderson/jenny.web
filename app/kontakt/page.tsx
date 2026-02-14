@@ -3,6 +3,7 @@
 import { useState } from "react";
 import GlitterEffect from "../components/GlitterEffect";
 import BubbleEffect from "../components/BubbleEffect";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   SparkleIcon,
   ShellIcon,
@@ -28,9 +29,54 @@ export default function Kontakt() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+  
+    if (!recaptchaToken) {
+      alert("Prosím potvrďte, že nejste robot.");
+      return;
+    }
+  
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          company: "",
+          recaptchaToken,
+        }),
+      });
+  
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+      };
+  
+      if (!res.ok) {
+        alert(data.error || "Nepodařilo se odeslat zprávu.");
+        return;
+      }
+  
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+  
+      setRecaptchaToken(null);
+    } catch {
+      alert("Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.");
+    }
+  };
+    
+    if (!recaptchaToken) {
+      alert("Prosím potvrďte, že nejste robot.");
+      return;
+    }
   
     try {
       const res = await fetch("/api/contact", {
@@ -39,10 +85,10 @@ export default function Kontakt() {
         body: JSON.stringify({
           ...formData,
           company: "", // honeypot (optional)
+          recaptchaToken,
         }),
-      });
   
-      const data = await res.json().catch(() => ({}));
+        const data: any = await res.json().catch(() => ({}));
   
       if (!res.ok) {
         alert(data.error || "Nepodařilo se odeslat zprávu.");

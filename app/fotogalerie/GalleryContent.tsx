@@ -115,6 +115,7 @@ export default function GalleryContent() {
                       src={item.src}
                       muted
                       playsInline
+                      poster="/filmik_thumb.jpg"
                       preload="metadata"
                       className="w-full h-full object-cover"
                     />
