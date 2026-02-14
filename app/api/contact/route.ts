@@ -160,6 +160,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
+    console.error("CONTACT_API_ERROR", err);
     return NextResponse.json(
       { error: "Server error sending email." },
       { status: 500 }
