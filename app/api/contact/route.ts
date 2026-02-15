@@ -116,6 +116,34 @@ export async function POST(req: Request) {
     const company = clean(body.company);
     if (company) return NextResponse.json({ ok: true });
 
+    // reCAPTCHA verification
+    const recaptchaToken = clean(body.recaptchaToken);
+    if (!recaptchaToken) {
+      return NextResponse.json(
+        { error: "Chybí reCAPTCHA token." },
+        { status: 400 }
+      );
+    }
+
+    const recaptchaRes = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: process.env.RECAPTCHA_SECRET_KEY!,
+          response: recaptchaToken,
+        }),
+      }
+    );
+    const recaptchaData = (await recaptchaRes.json()) as { success: boolean };
+    if (!recaptchaData.success) {
+      return NextResponse.json(
+        { error: "Ověření reCAPTCHA se nezdařilo." },
+        { status: 403 }
+      );
+    }
+
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields: name, email, message." },
