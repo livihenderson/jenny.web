@@ -72,42 +72,6 @@ export default function Kontakt() {
       alert("Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.");
     }
   };
-    
-    if (!recaptchaToken) {
-      alert("Prosím potvrďte, že nejste robot.");
-      return;
-    }
-  
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          company: "", // honeypot (optional)
-          recaptchaToken,
-        }),
-  
-        const data: any = await res.json().catch(() => ({}));
-  
-      if (!res.ok) {
-        alert(data.error || "Nepodařilo se odeslat zprávu.");
-        return;
-      }
-  
-      setSubmitted(true);
-  
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
-      });
-    } catch (err) {
-      alert("Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.");
-    }
-  };
 
   return (
     <>
@@ -291,6 +255,14 @@ export default function Kontakt() {
                         placeholder="Popište svoji představu..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="flex justify-center">
+                      <ReCAPTCHA
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                        onChange={(token) => setRecaptchaToken(token)}
+                        onExpired={() => setRecaptchaToken(null)}
                       />
                     </div>
 
